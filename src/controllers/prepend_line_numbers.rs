@@ -33,6 +33,10 @@ impl DuplicateFinder {
     }
 
     fn add_prepend(&mut self) {
+        if self.application_state.is_line_number_used {
+            return;
+        }
+
         let updated_content = self
             .content
             .lines()
