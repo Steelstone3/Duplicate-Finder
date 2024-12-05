@@ -10,7 +10,7 @@ impl DuplicateFinder {
         for line in new_lines {
             content_map
                 .entry(line.content.clone())
-                .or_insert_with(Vec::new)
+                .or_default()
                 .push(line);
         }
 
