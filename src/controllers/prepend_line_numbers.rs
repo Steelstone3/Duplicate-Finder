@@ -41,7 +41,7 @@ impl DuplicateFinder {
             .content
             .lines()
             .enumerate()
-            .map(|(index, line)| format!("{}:: {}", index + 1, line.to_string()))
+            .map(|(index, line)| format!("{}:: {}", index + 1, line))
             .collect::<Vec<String>>()
             .join("\n");
 
