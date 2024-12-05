@@ -21,7 +21,7 @@ impl DuplicateFinder {
         let updated_content = self
             .content
             .lines()
-            .map(|line| format!("{}", line.splitn(2, ":: ").nth(1).unwrap_or(line)))
+            .map(|line| line.split_once(":: ").map(|x| x.1).unwrap_or(line).to_string())
             .collect::<Vec<String>>()
             .join("\n");
         self.application_state.content.perform(Action::SelectAll);
