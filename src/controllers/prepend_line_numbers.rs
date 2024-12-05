@@ -6,10 +6,10 @@ impl DuplicateFinder {
     pub fn toggle_prepend_line_numbers(&mut self) {
         self.content = self.application_state.content.text();
 
-        if !self.application_state.is_line_number_used {
-            self.add_prepend();
-        } else {
+        if self.application_state.is_line_number_used {
             self.remove_prepend();
+        } else {
+            self.add_prepend();
         }
     }
 
