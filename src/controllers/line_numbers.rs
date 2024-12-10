@@ -55,8 +55,8 @@ mod line_numbers_should {
     #[rstest]
     #[case("", "")]
     fn add_prepend_is_already_prepended(
-        #[case] editor_text: String,
-        #[case] expected_new_lines: String,
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
     ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
@@ -64,38 +64,93 @@ mod line_numbers_should {
         };
 
         // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(editor_text, expected_new_lines)
+        assert_eq!(expected_prepended_content, prepended_content)
     }
 
     #[rstest]
     #[case("", "")]
-    fn add_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {
+    fn add_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
             ..Default::default()
         };
 
         // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(editor_text, expected_new_lines)
+        assert_eq!(expected_prepended_content, prepended_content)
     }
 
     #[rstest]
     #[case("", "")]
-    fn remove_prepend_has_no_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+    fn remove_prepend_has_no_prepend(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
+
+        // Then
+        assert_eq!(expected_prepended_content, prepended_content)
+    }
 
     #[rstest]
     #[case("", "")]
-    fn remove_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+    fn remove_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
+
+        // Then
+        assert_eq!(expected_prepended_content, prepended_content)
+    }
 
     #[rstest]
     #[case("", "")]
-    fn toggle_prepend_line_numbers_prepended(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+    fn toggle_prepend_line_numbers_prepended(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
+
+        // Then
+        assert_eq!(expected_prepended_content, prepended_content)
+    }
 
     #[rstest]
     #[case("", "")]
-    fn toggle_prepend_line_numbers_is_not_prepended(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+    fn toggle_prepend_line_numbers_is_not_prepended(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
+
+        // Then
+        assert_eq!(expected_prepended_content, prepended_content)
+    }
 }
