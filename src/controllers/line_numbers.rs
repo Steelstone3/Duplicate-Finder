@@ -49,4 +49,53 @@ impl DuplicateFinder {
 
 #[cfg(test)]
 mod line_numbers_should {
+    use super::*;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case("", "")]
+    fn add_prepend_is_already_prepended(
+        #[case] editor_text: String,
+        #[case] expected_new_lines: String,
+    ) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+
+        // Then
+        assert_eq!(editor_text, expected_new_lines)
+    }
+
+    #[rstest]
+    #[case("", "")]
+    fn add_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+
+        // Then
+        assert_eq!(editor_text, expected_new_lines)
+    }
+
+    #[rstest]
+    #[case("", "")]
+    fn remove_prepend_has_no_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+
+    #[rstest]
+    #[case("", "")]
+    fn remove_prepend(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+
+    #[rstest]
+    #[case("", "")]
+    fn toggle_prepend_line_numbers_prepended(#[case] editor_text: String, #[case] expected_new_lines: String) {}
+
+    #[rstest]
+    #[case("", "")]
+    fn toggle_prepend_line_numbers_is_not_prepended(#[case] editor_text: String, #[case] expected_new_lines: String) {}
 }
