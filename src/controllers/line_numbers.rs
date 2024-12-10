@@ -134,12 +134,16 @@ mod line_numbers_should {
     #[rstest]
     #[case(true, "", "")]
     fn toggle_prepend_line_numbers(
-        #[case] is: bool,
+        #[case] is_line_number_used: bool,
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
     ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
+            application_state: ApplicationState {
+                is_line_number_used,
+                ..Default::default()
+            },
             ..Default::default()
         };
 
