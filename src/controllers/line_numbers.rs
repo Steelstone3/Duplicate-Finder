@@ -119,26 +119,9 @@ mod line_numbers_should {
     }
 
     #[rstest]
-    #[case("", "")]
-    fn toggle_prepend_line_numbers_prepended(
-        #[case] editor_content: String,
-        #[case] expected_prepended_content: String,
-    ) {
-        // Given
-        let mut duplicate_finder = DuplicateFinder {
-            ..Default::default()
-        };
-
-        // When
-        let prepended_content = duplicate_finder.add_prepend(editor_content);
-
-        // Then
-        assert_eq!(expected_prepended_content, prepended_content)
-    }
-
-    #[rstest]
-    #[case("", "")]
-    fn toggle_prepend_line_numbers_is_not_prepended(
+    #[case(true, "", "")]
+    fn toggle_prepend_line_numbers(
+        #[case] is: bool,
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
     ) {
