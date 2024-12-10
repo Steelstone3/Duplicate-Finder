@@ -57,12 +57,20 @@ mod line_numbers_should {
 
     #[rstest]
     #[case("", "")]
+    #[case("hi", "hi")]
+    #[case("hi\nthere", "hi\nthere")]
+    #[case("1:: hi", "1:: hi")]
+    #[case("1:: hi\n2:: hi", "1:: hi\n2:: hi")]
     fn add_prepend_is_already_prepended(
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
     ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
+            application_state: ApplicationState {
+                is_line_number_used: true,
+                ..Default::default()
+            },
             ..Default::default()
         };
 
@@ -75,17 +83,11 @@ mod line_numbers_should {
 
     #[rstest]
     #[case("", "")]
-    #[case("hi", "hi")]
-    #[case("hi\nthere", "hi\nthere")]
-    #[case("1:: hi", "1:: hi")]
-    #[case("1:: hi\n2:: hi", "1:: hi\n2:: hi")]
+    #[case("hi", "1:: hi")]
+    #[case("hi\nhi", "1:: hi\n2:: hi")]
     fn add_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
-            application_state: ApplicationState {
-                is_line_number_used: true,
-                ..Default::default()
-            },
             ..Default::default()
         };
 
