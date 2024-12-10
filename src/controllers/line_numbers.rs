@@ -49,10 +49,8 @@ impl DuplicateFinder {
 
 #[cfg(test)]
 mod line_numbers_should {
-    use crate::models::application_state::ApplicationState;
-
     use super::*;
-    use iced::advanced::graphics::futures::backend::default;
+    use crate::models::application_state::ApplicationState;
     use rstest::rstest;
 
     #[rstest]
