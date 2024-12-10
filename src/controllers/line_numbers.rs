@@ -49,7 +49,10 @@ impl DuplicateFinder {
 
 #[cfg(test)]
 mod line_numbers_should {
+    use crate::models::application_state::ApplicationState;
+
     use super::*;
+    use iced::advanced::graphics::futures::backend::default;
     use rstest::rstest;
 
     #[rstest]
@@ -72,9 +75,17 @@ mod line_numbers_should {
 
     #[rstest]
     #[case("", "")]
+    #[case("hi", "hi")]
+    #[case("hi\nthere", "hi\nthere")]
+    #[case("1:: hi", "1:: hi")]
+    #[case("1:: hi\n2:: hi", "1:: hi\n2:: hi")]
     fn add_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
+            application_state: ApplicationState {
+                is_line_number_used: true,
+                ..Default::default()
+            },
             ..Default::default()
         };
 
