@@ -6,7 +6,7 @@ use iced::{
 use iced_aw::Card;
 
 impl DuplicateFinder {
-    pub fn duplicate_finder_view(&self) -> Column<Message> {
+    pub fn duplicate_finder_view(&self) -> Column<'_, Message> {
         let mut contents = column![];
 
         if !self.duplicate_lines.is_empty() {
@@ -23,7 +23,7 @@ impl DuplicateFinder {
         contents
     }
 
-    fn duplicate_line_cards(&self) -> Vec<Card<Message, Theme, Renderer>> {
+    fn duplicate_line_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
         let mut duplicate_line_cards = vec![];
 
         for duplicate_line in &self.duplicate_lines {

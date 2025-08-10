@@ -6,7 +6,7 @@ use iced::widget::{Column, Scrollable, column};
 use iced_aw::{TabBar, TabLabel};
 
 impl DuplicateFinder {
-    pub fn tab_bar_view(&self) -> Column<Message> {
+    pub fn tab_bar_view(&self) -> Column<'_, Message> {
         match self.application_state.tab {
             TabIdentifier::Editor => {
                 let tab_bar = selected_tab_bar(&TabIdentifier::Editor);

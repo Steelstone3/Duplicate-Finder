@@ -3,7 +3,7 @@ use iced::widget::{Column, button, column, text, text_editor};
 use iced_aw::Card;
 
 impl DuplicateFinder {
-    pub fn editor_view(&self) -> Column<Message> {
+    pub fn editor_view(&self) -> Column<'_, Message> {
         let contents = column!()
             .push(text("Duplicate Text"))
             .spacing(10)
