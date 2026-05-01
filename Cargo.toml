@@ -1,6 +1,6 @@
 [package]
 name = "duplicate-finder"
-version = "1.2.4"
+version = "1.2.5"
 authors = ["Skippy <steelstone3@gmail.com>"]
 edition = "2024"
 homepage = "https://github.com/Steelstone3/Duplicate-Finder/tree/main"
@@ -27,5 +27,5 @@ opt-level = 3
 
 [dependencies]
 iced = "0.14"
-iced_aw = "0.13"
+iced_aw = "0.14"
 rstest = "0"
