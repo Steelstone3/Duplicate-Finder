@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct NewLine {
     pub line_number: u128,
     pub content: String,

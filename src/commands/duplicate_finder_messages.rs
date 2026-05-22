@@ -29,6 +29,20 @@ impl DuplicateFinder {
                 self.refresh_editor(filtered_content);
                 self.find_duplicates(self.get_editor_text());
             }
+            Message::SearchKeywordChanged(search_keyword) => {
+                self.search_keyword = search_keyword;
+            }
+            Message::FindLinesPressed => {
+                self.find_search_keyword(self.get_editor_text());
+            }
+            Message::FoundLinesRemovedPressed => {
+                let editor_content = self.get_editor_text();
+                let content = self.remove_prepend(editor_content);
+                self.refresh_editor(content);
+                let filtered_content = self.remove_search_keyword(self.get_editor_text());
+                self.refresh_editor(filtered_content);
+                self.find_search_keyword(self.get_editor_text());
+            }
         }
     }
 }

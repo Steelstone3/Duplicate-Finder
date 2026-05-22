@@ -59,7 +59,7 @@ mod line_numbers_should {
     #[case("hi\nthere", "hi\nthere")]
     #[case("1:: hi", "1:: hi")]
     #[case("1:: hi\n2:: hi", "1:: hi\n2:: hi")]
-    fn add_prepend_is_already_prepended(
+    fn test_add_prepend_is_already_prepended(
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
     ) {
@@ -76,29 +76,14 @@ mod line_numbers_should {
         let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(expected_prepended_content, prepended_content)
+        pretty_assertions::assert_eq!(expected_prepended_content, prepended_content)
     }
 
     #[rstest]
     #[case("", "")]
     #[case("hi", "1:: hi")]
     #[case("hi\nhi", "1:: hi\n2:: hi")]
-    fn add_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
-        // Given
-        let mut duplicate_finder = DuplicateFinder {
-            ..Default::default()
-        };
-
-        // When
-        let prepended_content = duplicate_finder.add_prepend(editor_content);
-
-        // Then
-        assert_eq!(expected_prepended_content, prepended_content)
-    }
-
-    #[rstest]
-    #[case("", "")]
-    fn remove_prepend_has_no_prepend(
+    fn test_add_prepend(
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
     ) {
@@ -111,12 +96,15 @@ mod line_numbers_should {
         let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(expected_prepended_content, prepended_content)
+        pretty_assertions::assert_eq!(expected_prepended_content, prepended_content)
     }
 
     #[rstest]
     #[case("", "")]
-    fn remove_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
+    fn test_remove_prepend_has_no_prepend(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
             ..Default::default()
@@ -126,12 +114,30 @@ mod line_numbers_should {
         let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(expected_prepended_content, prepended_content)
+        pretty_assertions::assert_eq!(expected_prepended_content, prepended_content)
+    }
+
+    #[rstest]
+    #[case("", "")]
+    fn test_remove_prepend(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
+        // Given
+        let mut duplicate_finder = DuplicateFinder {
+            ..Default::default()
+        };
+
+        // When
+        let prepended_content = duplicate_finder.add_prepend(editor_content);
+
+        // Then
+        pretty_assertions::assert_eq!(expected_prepended_content, prepended_content)
     }
 
     #[rstest]
     #[case(true, "", "")]
-    fn toggle_prepend_line_numbers(
+    fn test_toggle_prepend_line_numbers(
         #[case] is_line_number_used: bool,
         #[case] editor_content: String,
         #[case] expected_prepended_content: String,
@@ -149,6 +155,6 @@ mod line_numbers_should {
         let prepended_content = duplicate_finder.add_prepend(editor_content);
 
         // Then
-        assert_eq!(expected_prepended_content, prepended_content)
+        pretty_assertions::assert_eq!(expected_prepended_content, prepended_content)
     }
 }

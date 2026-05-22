@@ -8,7 +8,7 @@ mod views;
 
 pub fn main() -> iced::Result {
     iced::application(
-        || DuplicateFinder::boot(),
+        DuplicateFinder::boot,
         DuplicateFinder::update,
         DuplicateFinder::view,
     )

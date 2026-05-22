@@ -19,6 +19,7 @@ impl DuplicateFinder {
             TabIdentifier::DuplicateFinder => {
                 self.application_state.tab = TabIdentifier::DuplicateFinder
             }
+            TabIdentifier::LineSearch => self.application_state.tab = TabIdentifier::LineSearch,
         }
     }
 
