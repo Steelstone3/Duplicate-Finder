@@ -83,7 +83,10 @@ mod line_numbers_should {
     #[case("", "")]
     #[case("hi", "1:: hi")]
     #[case("hi\nhi", "1:: hi\n2:: hi")]
-    fn test_add_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
+    fn test_add_prepend(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
             ..Default::default()
@@ -116,7 +119,10 @@ mod line_numbers_should {
 
     #[rstest]
     #[case("", "")]
-    fn test_remove_prepend(#[case] editor_content: String, #[case] expected_prepended_content: String) {
+    fn test_remove_prepend(
+        #[case] editor_content: String,
+        #[case] expected_prepended_content: String,
+    ) {
         // Given
         let mut duplicate_finder = DuplicateFinder {
             ..Default::default()
