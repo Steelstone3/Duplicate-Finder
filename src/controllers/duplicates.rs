@@ -111,6 +111,6 @@ mod duplicates_should {
         let content = duplicate_finder.remove_duplicates(editor_text);
 
         // Then
-        assert_eq!(expected_content, content);
+        pretty_assertions::assert_eq!(expected_content, content);
     }
 }

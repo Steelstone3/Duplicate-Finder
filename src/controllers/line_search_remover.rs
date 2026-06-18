@@ -103,6 +103,6 @@ mod line_search_should {
         let content = duplicate_finder.remove_search_keyword(editor_text);
 
         // Then
-        assert_eq!(expected_content, content);
+        pretty_assertions::assert_eq!(expected_content, content);
     }
 }

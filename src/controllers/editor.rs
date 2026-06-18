@@ -53,7 +53,7 @@ mod editor_should {
         let new_lines = duplicate_finder.parse_editor_content(editor_text);
 
         // Then
-        assert_eq!(expected_new_lines.len(), new_lines.len());
+        pretty_assertions::assert_eq!(expected_new_lines.len(), new_lines.len());
         for expected_new_line in expected_new_lines {
             assert!(new_lines.contains(&expected_new_line));
         }
