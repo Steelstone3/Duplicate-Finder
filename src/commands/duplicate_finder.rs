@@ -42,12 +42,4 @@ impl DuplicateFinder {
             }
         }
     }
-
-    pub fn find_search_keyword(&self, get_editor_text: String) {
-        todo!()
-    }
-    
-    pub fn remove_search_keyword(&self, get_editor_text: String) -> String {
-        todo!()
-    }
 }

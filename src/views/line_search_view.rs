@@ -22,23 +22,23 @@ impl DuplicateFinder {
             .padding(10)
             .spacing(10);
 
-        for duplicate_lines in self.line_search_cards() {
-            contents = contents.push(duplicate_lines).spacing(10);
+        for found_lines in self.line_search_cards() {
+            contents = contents.push(found_lines).spacing(10);
         }
 
         contents
     }
 
     fn line_search_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
-        let mut duplicate_line_cards = vec![];
+        let mut found_line_cards = vec![];
 
         for duplicate_line in &self.duplicate_lines {
-            duplicate_line_cards.push(Card::new(
-                "Duplicate Line",
+            found_line_cards.push(Card::new(
+                "Found Line",
                 text(duplicate_line.to_string()),
             ))
         }
 
-        duplicate_line_cards
+        found_line_cards
     }
 }
