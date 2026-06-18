@@ -6,4 +6,5 @@ pub struct DuplicateFinder {
     pub search_keyword: String,
     pub content: String,
     pub duplicate_lines: Vec<NewLine>,
+    pub found_lines: Vec<NewLine>,
 }

@@ -32,10 +32,10 @@ impl DuplicateFinder {
     fn line_search_cards(&self) -> Vec<Card<'_, Message, Theme, Renderer>> {
         let mut found_line_cards = vec![];
 
-        for duplicate_line in &self.duplicate_lines {
+        for found_line in &self.found_lines {
             found_line_cards.push(Card::new(
                 "Found Line",
-                text(duplicate_line.to_string()),
+                text(found_line.to_string()),
             ))
         }
 
