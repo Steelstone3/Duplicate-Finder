@@ -2,6 +2,8 @@ use crate::models::{duplicate_finder::DuplicateFinder, new_line::NewLine};
 
 impl DuplicateFinder {
     pub fn find_search_keyword(&mut self, editor_text: String) {
+        self.found_lines.clear();
+
         let new_lines = self.parse_editor_content(editor_text);
 
         for line in new_lines {
