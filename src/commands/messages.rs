@@ -16,4 +16,6 @@ pub enum Message {
     EditorChanged(text_editor::Action),
     DuplicateSearchPressed,
     DuplicateRemovePressed,
+    SearchKeywordChanged(String),
+    FoundLinesRemovedPressed,
 }

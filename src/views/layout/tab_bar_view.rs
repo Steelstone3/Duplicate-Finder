@@ -22,6 +22,13 @@ impl DuplicateFinder {
 
                 column!(self.menu_view(), tab_bar, contents)
             }
+            TabIdentifier::LineSearch => {
+                let tab_bar = selected_tab_bar(&TabIdentifier::LineSearch);
+
+                let contents = Scrollable::new(column!().push(self.line_search_view()));
+
+                column!(self.menu_view(), tab_bar, contents)
+            }
         }
     }
 }
@@ -35,6 +42,10 @@ fn selected_tab_bar(active_tab: &TabIdentifier) -> TabBar<'static, Message, TabI
         .push(
             TabIdentifier::DuplicateFinder,
             TabLabel::IconText('\u{1F50D}', "Duplicate Finder".to_string()),
+        )
+        .push(
+            TabIdentifier::LineSearch,
+            TabLabel::IconText('\u{1F50D}', "Line Search".to_string()),
         )
         .set_active_tab(active_tab)
 }

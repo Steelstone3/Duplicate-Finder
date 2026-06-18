@@ -3,4 +3,5 @@ pub enum TabIdentifier {
     #[default]
     Editor,
     DuplicateFinder,
+    LineSearch
 }
