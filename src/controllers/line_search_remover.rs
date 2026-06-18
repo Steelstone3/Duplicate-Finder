@@ -12,4 +12,6 @@ impl DuplicateFinder {
 }
 
 #[cfg(test)]
-mod line_search_should {}
+mod line_search_should {
+    
+}
