@@ -1,5 +1,5 @@
 use crate::models::{duplicate_finder::DuplicateFinder, new_line::NewLine};
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 impl DuplicateFinder {
     pub fn find_duplicates(&mut self, editor_text: String) {
@@ -31,7 +31,7 @@ impl DuplicateFinder {
                 .into_iter()
                 .filter(|line| {
                     !line.content.is_empty()
-                        && line.content != "\n"
+                        && !line.content.chars().all(|char| char == '\n')
                         && line.content == unique_content
                         && count > 1
                 })
@@ -68,6 +68,7 @@ mod duplicates_should {
 
     #[rstest]
     #[case("", vec![])]
+    #[case("\n", vec![])]
     #[case("\n\n", vec![])]
     #[case("hi\nhi", vec![NewLine { line_number: 1, content: "hi".to_string() }, NewLine { line_number: 2, content: "hi".to_string() }])]
     #[case("hi\nhi\nlow", vec![NewLine { line_number: 1, content: "hi".to_string() }, NewLine { line_number: 2, content: "hi".to_string() }])]
@@ -91,6 +92,8 @@ mod duplicates_should {
 
     #[rstest]
     #[case("", "")]
+    #[case("\n", "")]
+    #[case("\n\n", "\n")]
     #[case("hi", "hi")]
     #[case("hi\nhi", "hi")]
     #[case("hi\nhi\nthere", "hi\nthere")]
@@ -108,6 +111,6 @@ mod duplicates_should {
         let content = duplicate_finder.remove_duplicates(editor_text);
 
         // Then
-        pretty_assertions::assert_eq!(expected_content, content);
+        assert_eq!(expected_content, content);
     }
 }

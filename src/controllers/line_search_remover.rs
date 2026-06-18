@@ -16,13 +16,19 @@ impl DuplicateFinder {
 
         let mut flattened_filtered_lines = vec![];
 
-        let filtered_lines: Vec<NewLine> = new_lines
-            .into_iter()
-            .filter(|found_line| !self.found_lines.contains(found_line))
-            .collect();
+        if self.search_keyword.is_empty() {
+            for line in new_lines {
+                flattened_filtered_lines.push(line.content);
+            }
+        } else {
+            let filtered_lines: Vec<NewLine> = new_lines
+                .into_iter()
+                .filter(|found_line| !found_line.content.contains(&self.search_keyword))
+                .collect();
 
-        for line in filtered_lines {
-            flattened_filtered_lines.push(line.content);
+            for line in filtered_lines {
+                flattened_filtered_lines.push(line.content);
+            }
         }
 
         flattened_filtered_lines.join("\n")
@@ -63,23 +69,23 @@ mod line_search_should {
     }
 
     #[rstest]
-    #[ignore]
     #[case("", "", "")]
-    // #[case("", "\n\n", "\n\n")]
-    // #[case("hi", "hi\nhi", "")]
-    // #[case("hi", "hi\nhi\nlow", "low")]
-    // #[case("", "hi\nhi\nlow", "hi\nhi\nlow")]
-    // #[case("high", "high\nhi\nhi\nlow", "hi\nhi\nlow")]
-    // #[case(
-    //     "hi",
-    //     "\n\nhi\nhi\nlow\ntnt\nlow\nspade\nhi",
-    //     "\n\nlow\ntnt\nlow\nspade"
-    // )]
-    // #[case(
-    //     "spade",
-    //     "\n\nhi\nhi\nlow\ntnt\nlow\nspade\nhi",
-    //     "\n\nhi\nhi\nlow\ntnt\nlow\nhi"
-    // )]
+    #[case("", "\n", "")]
+    #[case("", "\n\n", "\n")]
+    #[case("hi", "hi\nhi", "")]
+    #[case("hi", "hi\nhi\nlow", "low")]
+    #[case("", "hi\nhi\nlow", "hi\nhi\nlow")]
+    #[case("high", "high\nhi\nhi\nlow", "hi\nhi\nlow")]
+    #[case(
+        "hi",
+        "\n\nhi\nhi\nlow\ntnt\nlow\nspade\nhi",
+        "\n\nlow\ntnt\nlow\nspade"
+    )]
+    #[case(
+        "spade",
+        "\n\nhi\nhi\nlow\ntnt\nlow\nspade\nhi",
+        "\n\nhi\nhi\nlow\ntnt\nlow\nhi"
+    )]
     fn test_remove_duplicates(
         #[case] search_keyword: String,
         #[case] editor_text: String,
@@ -95,6 +101,6 @@ mod line_search_should {
         let content = duplicate_finder.remove_search_keyword(editor_text);
 
         // Then
-        pretty_assertions::assert_eq!(expected_content, content);
+        assert_eq!(expected_content, content);
     }
 }
