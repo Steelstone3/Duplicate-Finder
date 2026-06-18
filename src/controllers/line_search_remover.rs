@@ -11,28 +11,6 @@ impl DuplicateFinder {
                 self.found_lines.push(line);
             }
         }
-
-        // let mut found_lines_map: HashMap<String, Vec<NewLine>> = HashMap::new();
-
-        // for line in new_lines {
-        //     found_lines_map
-        //         .entry(line.content.clone())
-        //         .or_default()
-        //         .push(line);
-        // }
-
-        // self.found_lines = found_lines_map
-        //     .into_iter()
-        //     .flat_map(|(line, duplicates)| {
-        //         if line.is_empty() {
-        //             vec![]
-        //         } else if duplicates.len() > 1 {
-        //             duplicates
-        //         } else {
-        //             vec![]
-        //         }
-        //     })
-        //     .collect();
     }
 
     pub fn remove_search_keyword(&mut self, editor_text: String) -> String {
