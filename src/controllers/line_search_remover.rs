@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use crate::models::{duplicate_finder::DuplicateFinder, new_line::NewLine};
 
 impl DuplicateFinder {
@@ -14,8 +12,20 @@ impl DuplicateFinder {
     }
 
     pub fn remove_search_keyword(&mut self, editor_text: String) -> String {
-        "".to_string()
-        // editor_text
+        let new_lines = self.parse_editor_content(editor_text);
+
+        let mut flattened_filtered_lines = vec![];
+
+        let filtered_lines: Vec<NewLine> = new_lines
+            .into_iter()
+            .filter(|found_line| !self.found_lines.contains(found_line))
+            .collect();
+
+        for line in filtered_lines {
+            flattened_filtered_lines.push(line.content);
+        }
+
+        flattened_filtered_lines.join("\n")
     }
 }
 

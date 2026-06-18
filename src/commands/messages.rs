@@ -17,5 +17,6 @@ pub enum Message {
     DuplicateSearchPressed,
     DuplicateRemovePressed,
     SearchKeywordChanged(String),
+    FindLinesPressed,
     FoundLinesRemovedPressed,
 }
