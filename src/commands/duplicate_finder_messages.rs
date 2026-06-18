@@ -31,6 +31,7 @@ impl DuplicateFinder {
             }
             Message::SearchKeywordChanged(search_keyword) => {
                 self.search_keyword = search_keyword;
+                self.find_search_keyword(self.get_editor_text());
             }
             Message::FoundLinesRemovedPressed => {
                 let editor_content = self.get_editor_text();
