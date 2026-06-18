@@ -33,6 +33,9 @@ opt-level = 0
 [profile.dev.package."*"]
 opt-level = 3
 
+[dev-dependencies]
+pretty_assertions="1"
+
 [dependencies]
 iced = "0.14"
 iced_aw = "0.14"
