@@ -17,7 +17,7 @@ impl DuplicateFinder {
             .push(text_input(
                 "Line Search Term",
                 &self.search_keyword,
-            ))
+            ).on_input(Message::SearchKeywordChanged))
             .push(button("Remove Found Lines").on_press(Message::FoundLinesRemovedPressed))
             .padding(10)
             .spacing(10);
