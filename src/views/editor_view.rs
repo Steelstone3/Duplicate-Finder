@@ -5,10 +5,12 @@ use iced_aw::Card;
 impl DuplicateFinder {
     pub fn editor_view(&self) -> Column<'_, Message> {
         let contents = column!()
-            .push(text("Duplicate Text"))
-            .spacing(10)
-            .push(button("Refresh Duplicate Search").on_press(Message::DuplicateSearchPressed))
-            .padding(10)
+        .push(button("Refresh Duplicate Search").on_press(Message::DuplicateSearchPressed))
+        .padding(10)
+         .push(button("Trim Newline Whitespace").on_press(Message::TrimNewlineWhitespacePressed))
+        .padding(10)
+        .push(text("Duplicate Text"))
+        .spacing(10)
             .spacing(10)
             .push(
                 text_editor(&self.application_state.content)

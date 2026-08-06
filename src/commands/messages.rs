@@ -15,6 +15,7 @@ pub enum Message {
     ViewThemeChanged,
     EditorChanged(text_editor::Action),
     DuplicateSearchPressed,
+    TrimNewlineWhitespacePressed,
     DuplicateRemovePressed,
     SearchKeywordChanged(String),
     FindLinesPressed,

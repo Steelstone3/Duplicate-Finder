@@ -21,6 +21,13 @@ impl DuplicateFinder {
                 self.refresh_editor(content);
                 self.find_duplicates(self.get_editor_text());
             }
+            Message::TrimNewlineWhitespacePressed => {
+                let editor_content = self.get_editor_text();
+                let content = self.remove_prepend(editor_content);
+                self.refresh_editor(content);
+                let content = self.trim_lines(self.get_editor_text());
+                self.refresh_editor(content);
+            }
             Message::DuplicateRemovePressed => {
                 let editor_content = self.get_editor_text();
                 let content = self.remove_prepend(editor_content);
